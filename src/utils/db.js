@@ -4,14 +4,8 @@ const mongoOptions = {
   useNewUrlParser: true,
 };
 
-if (
-  process.env.MONGO_INITDB_ROOT_USERNAME &&
-  process.env.MONGO_INITDB_ROOT_PASSWORD
-) {
-  mongoOptions.user = process.env.MONGO_INITDB_ROOT_USERNAME;
-  mongoOptions.pass = process.env.MONGO_INITDB_ROOT_PASSWORD;
-}
-mongoose.connect(`${process.env.DB_URL}`, mongoOptions);
+const dbUrl = global.__MONGO_URI__ || 'mongodb://localhost:27017/pokedex';
+mongoose.connect(dbUrl, mongoOptions);
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));

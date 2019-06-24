@@ -1,9 +1,9 @@
-const pokemonData = require('../data/pokemon.data');
+const pokemonData = require('../../data/pokemon.data');
 const { MongoClient } = require('mongodb');
 const request = require('supertest');
 const mongoose = require('mongoose');
-const app = require('../../src/app');
 require('../../src/utils/db');
+const app = require('../../src/app');
 
 describe('Pokemon', () => {
   let connection;
